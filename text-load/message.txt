@@ -1,0 +1,49 @@
+Je vais à <Arr>Lille</Arr> depuis <Dep>Clermon-Ferand</Dep>.
+J'aimerais allé à <Arr>Montpeiller</Arr> en partan de <Dep>Toulon</Dep>.
+Desde <Dep>Rouen</Dep>, quiero ir a <Arr>Orléans</Arr>.
+Je partira demain depuis <Dep>La Rocelle</Dep> pour <Arr>Poitie</Arr>.
+Il faut que je prenne le train de <Dep>Dijjon</Dep> vers <Arr>Angers</Arr>.
+Je suis en route pour <Arr>Avignon</Arr> en partan de <Dep>Limmoges</Dep>.
+Since <Dep>Le Mans</Dep>, I want to go to <Arr>Mulhouse</Arr> tomorrow morning.
+J’ai envie d’aller à <Arr>Bezziers</Arr>, mais je sais pas encore d’où.
+Je part de <Dep>Grenobles</Dep> pour <Arr>Paux</Arr> la semaine prochaine.
+Maybe I will go to <Arr>Reins</Arr> from <Dep>Metz</Dep>.
+Desde <Dep>Madrid</Dep>, quiero ir a <Arr>Barcelona</Arr>.
+I'm traveling from <Dep>Berlin</Dep> to <Arr>Amsterdam</Arr>.
+Je suis à <Dep>Rome</Dep> et je vais à <Arr>Vienne</Arr>.
+Je veux allé à <Arr>Bruxelle</Arr> depuis <Dep>Paris</Dep>.
+Voy a salir de <Dep>Lisbonne</Dep> para ir a <Arr>Madrid</Arr>.
+Je partira de <Dep>Bruxelles</Dep> vers <Arr>Luxemburgo</Arr>.
+Depuis <Dep>New York</Dep>, je vais à <Arr>Los Angeles</Arr>.
+Je vais de <Dep>Tokyo</Dep> à <Arr>Osaka</Arr>.
+I will travel from <Dep>London</Dep> to <Arr>Manchester</Arr> next week.
+Ich reise von <Dep>Frankfurt</Dep> nach <Arr>München</Arr>.
+Je pars demain de <Dep>Genève</Dep> pour <Arr>Zurich</Arr>.
+Je vais de <Dep>Venise</Dep> vers <Arr>Florence</Arr>.
+On voyage de <Dep>Sydney</Dep> vers <Arr>Melbourne</Arr>.
+Je vais quitté <Dep>Mexico</Dep> pour aller à <Arr>Guadalajara</Arr>.
+Je veux partir de <Dep>Lisbonne</Dep> pour aller à <Arr>Porto</Arr>.
+Je vais à <Arr>Madrid</Arr> depuis <Dep>Valencia</Dep>.
+J’irai de <Dep>Stockholm</Dep> à <Arr>Gothenburg</Arr>.
+Je vais de <Dep>Toronto</Dep> à <Arr>Montréal</Arr> la semaine prochaine.
+Voy a viajar de <Dep>Bogota</Dep> a <Arr>Medellin</Arr>.
+Je voyage de <Dep>Buenos Aires</Dep> à <Arr>Córdoba</Arr>.
+Je pars de <Dep>Melburn</Dep> pour rejoindre <Arr>Adélaïde</Arr>.
+On va partir de <Dep>Vancouver</Dep> pour aller à <Arr>Calgary</Arr>.
+Depuis <Dep>Rio de Janeiro</Dep>, je vais à <Arr>São Paulo</Arr>.
+Voy a viajar de <Dep>Santiago</Dep> hacia <Arr>Valparaiso</Arr>.
+Je vais à <Arr>Londre</Arr> depuis <Dep>Paris</Dep>.
+De <Dep>Boston</Dep>, je pars pour <Arr>Miami</Arr>.
+I am traveling from <Dep>Chicago</Dep> to <Arr>San Francisco</Arr>.
+Je vais partir de <Dep>Athènes</Dep> pour aller à <Arr>Istanbul</Arr>.
+Ich fahre von <Dep>Hamburg</Dep> nach <Arr>Berlin</Arr>.
+Je vais quitter <Dep>Vienne</Dep> pour rejoindre <Arr>Prague</Arr>.
+On va quitter <Dep>Dublin</Dep> pour <Arr>Edinburgh</Arr>.
+Je suis à <Dep>Helsinki</Dep> et je vais à <Arr>Oslo</Arr>.
+Je pense partir de <Dep>Copenhague</Dep> pour <Arr>Reykjavik</Arr>.
+Voy a viajar de <Dep>Mexico</Dep> hacia <Arr>Cancun</Arr>.
+Je vais quitté <Dep>Shanghai</Dep> pour aller à <Arr>Beijing</Arr>.
+On va quitter <Dep>Bangkok</Dep> pour <Arr>Phuket</Arr>.
+Je vais de <Dep>Delhi</Dep> à <Arr>Mumbai</Arr>.
+I'm traveling from <Dep>Toronto</Dep> to <Arr>Vancouver</Arr> tomorrow.
+Voy a salir de <Dep>Bogota</Dep> para ir a <Arr>Cali</Arr>.
