@@ -45,7 +45,7 @@ def process_sentences(input_file):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python nlp_trip_detector.py <input_file>")
+        print("Usage: python nlp_processor.py <input_file>")
         sys.exit(1)
 
     input_file = sys.argv[1]
