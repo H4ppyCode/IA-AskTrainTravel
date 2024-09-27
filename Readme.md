@@ -19,6 +19,7 @@ _Inside the venv_
 
 ```sh
 python -m pip install -r requirements.txt
+python -m spacy download fr_core_news_md
 ```
 
 ### SNCF Datasets

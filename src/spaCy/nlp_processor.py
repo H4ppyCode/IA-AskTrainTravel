@@ -30,7 +30,7 @@ def extract_trip_info(sentence):
 
 
 def process_sentences(input_file):
-    results = []
+    results = ['sequence_id,departure,arrival']
     with open(input_file, 'r', encoding='utf-8') as file:
         for line in file:
             sentence_id, sentence = line.strip().split(',', 1)

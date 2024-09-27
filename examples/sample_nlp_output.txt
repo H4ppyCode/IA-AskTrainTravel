@@ -1,3 +1,4 @@
+sequence_id,departure,arrival
 1,Toulouse,Bordeaux
 2,Tours,Port-Boulet
 3,Bordeaux,Tours

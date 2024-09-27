@@ -49,12 +49,13 @@ def convert_to_tokens_and_labels(text):
 
     return tokens, labels
 
-# Convertir les textes en format tokens et labels
-data = []
-for text in texts:
-    tokens, labels = convert_to_tokens_and_labels(text)
-    data.append((tokens, labels))
+if __name__ == "__main__":
+    # Convertir les textes en format tokens et labels
+    data = []
+    for text in texts:
+        tokens, labels = convert_to_tokens_and_labels(text)
+        data.append((tokens, labels))
 
-# Convertir en DataFrame
-df = pd.DataFrame(data, columns=["tokens", "labels"])
-print(df)
+    # Convertir en DataFrame
+    df = pd.DataFrame(data, columns=["tokens", "labels"])
+    print(df)

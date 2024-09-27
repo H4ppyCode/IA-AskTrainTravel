@@ -8,6 +8,7 @@ import pickle
 import datetime
 import bisect
 import json
+import re
 from geopy.distance import geodesic
 from rtree import index
 from shapely.geometry import Point
@@ -451,7 +452,9 @@ class GTFSGraph:
         return None
     
     def get_area(self, area_name: str):
-        possible_areas = self.stops_df[self.stops_df['stop_name'].str.match(fr"^{area_name}(?:\s|$)", case=False) & (self.stops_df['location_type'] == 1)]
+        area_regex_name = re.sub(r'[ -]', r'[ -]', area_name)
+        area_regex_name = fr"^{area_regex_name}(?:\s|$)"
+        possible_areas = self.stops_df[self.stops_df['stop_name'].str.match(area_regex_name, case=False) & (self.stops_df['location_type'] == 1)]
         if possible_areas.empty:
             raise Exception(f"Area {area_name} not found")
         # Sort by decreasing number of stop points from the stops.txt df
