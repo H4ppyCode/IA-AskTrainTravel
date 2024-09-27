@@ -1,0 +1,10 @@
+# Common
+pandas
+
+# SpaCy
+spacy
+fr_core_news_md
+
+# Pathfinding
+networkx
+folium

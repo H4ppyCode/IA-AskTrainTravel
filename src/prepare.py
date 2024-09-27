@@ -3,7 +3,7 @@ import pandas as pd
 # Exemple de texte annoté
 texts = [
     "Je vais à <Arr>Madrid</Arr> depuis <Dep>Valencia</Dep>.",
-    "J’irai de <Dep>Stockholm</Dep> à <Arr>Gothenburg</Arr>.",
+    "J'irai de <Dep>Stockholm</Dep> à <Arr>Gothenburg</Arr>.",
     "Je vais de <Dep>Toronto</Dep> à <Arr>Montréal</Arr> la semaine prochaine.",
     # Ajoute les autres phrases ici...
 ]

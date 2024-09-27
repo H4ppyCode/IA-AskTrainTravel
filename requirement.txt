@@ -1,3 +1,0 @@
-pandas
-spacy
-fr_core_news_md
