@@ -44,11 +44,15 @@ def process_sentences(input_file):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python nlp_processor.py <input_file>")
-        sys.exit(1)
+    # if len(sys.argv) != 1:
+        # print("Usage: python nlp_processor.py <input_file>")
+        # sys.exit(1)
 
-    input_file = sys.argv[1]
-    results = process_sentences(input_file)
-    for result in results:
-        print(result)
+    input_file = sys.stdin.read()
+    departure, arrival = extract_trip_info(input_file)
+    # print(f"{departure} {arrival}")
+    print(departure)
+    print(arrival)
+    # results = process_sentences(input_file)
+    # for result in results:
+    #     print(result)

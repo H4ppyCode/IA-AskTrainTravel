@@ -7,3 +7,11 @@ spacy
 # Pathfinding
 networkx
 folium
+
+# Whisper
+openai-whisper
+
+
+geopy
+rtree
+shapely
