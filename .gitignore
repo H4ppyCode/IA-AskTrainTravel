@@ -6,3 +6,6 @@ __pycache__
 
 gtfs
 gtfs-cache
+
+src/nlpDataSet/*.json
+src/spaCy/model_ner_trained/

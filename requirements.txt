@@ -1,8 +1,10 @@
 # Common
 pandas
 
-# SpaCy
+# NLP
 spacy
+scikit-learn
+matplotlib
 
 # Pathfinding
 networkx
@@ -13,7 +15,6 @@ openai-whisper
 SpeechRecognition
 pyaudio
 setuptools
-
 
 geopy
 rtree

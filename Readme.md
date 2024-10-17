@@ -63,6 +63,15 @@ The required files are:
 
 Download the [railway tracks speed (json)](https://data.sncf.com/explore/dataset/vitesse-maximale-nominale-sur-ligne/export/) and the [list of stations (geojson)](https://transport.data.gouv.fr/datasets/liste-des-gares) and save them in the same directory as the GTFS data.
 
+### Generate dataset for nlp
+You need SNCF Datasets to generate the dataset for the NLP model.
+
+`python nlp_dataset_generator.py`
+
+### Test and fine-tune the NLP model
+`pip install spacy-lookups-data`
+
+## To Use
 ## Usage
 
 The main CLI program can be runned like this:
