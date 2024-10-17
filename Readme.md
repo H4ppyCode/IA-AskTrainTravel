@@ -4,6 +4,23 @@
 
 [Notion](https://alpine-cuckoo-e2f.notion.site/T-AIA-901-c6ed78595e584f15847a8320bc7a1f8c)
 
+
+## Project 
+
+The "Travel Order Resolver" project aims to develop a program that processes travel orders in natural language,
+identifying departure and destination locations (French trains) in text (or optionally voice) and determining the best train itinerary.
+The main focus is on Natural Language Processing (NLP) to extract relevant information from French text and optimize travel routes. 
+Additionally, the project requires building a custom training dataset for the NLP model and evaluating its performance.
+
+The key steps include:
+
+    1. Natural Language Processing (NLP) to understand the orders.
+    2. A voice recognition step to convert audio data into text.
+    3. An optimization process to find the best train connections.
+
+
+
+
 ## Stack using
 
 ![Python](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)
