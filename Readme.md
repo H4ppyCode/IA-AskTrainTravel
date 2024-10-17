@@ -14,8 +14,8 @@ Additionally, the project requires building a custom training dataset for the NL
 
 The key steps include:
 
-    1. Natural Language Processing (NLP) to understand the orders.
-    2. A voice recognition step to convert audio data into text.
+    1. A voice recognition step to convert audio data into text.
+    2. Natural Language Processing (NLP) to understand the orders.
     3. An optimization process to find the best train connections.
 
 
