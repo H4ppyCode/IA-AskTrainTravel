@@ -1,6 +1,7 @@
 from typing import Optional, Union, Any, Dict, List
 import os
 import sys
+import logging
 import pandas as pd
 import networkx as nx
 import time
@@ -181,7 +182,7 @@ class GTFSGraph:
         if self.verbose:
             start_time = time.time()
             nb_trips = len(self.stop_times_df['trip_id'].unique())
-            print(f"Adding edges for {nb_trips} trips")
+            logging.debug(f"Adding edges for {nb_trips} trips")
             i = 0
 
         for _, trip in self.stop_times_df.groupby('trip_id'):
@@ -189,7 +190,7 @@ class GTFSGraph:
             if self.verbose:
                 i += 1
                 if (i % 1000) == 0:
-                    print(f"{i} trips done ({time.time() - start_time:.2f}s)")
+                    logging.debug(f"{i} trips done ({time.time() - start_time:.2f}s)")
             for _, row in trip.iterrows():
                 # get the associated stop 
                 stop = self.stops_dict[row['stop_id']] 
@@ -241,7 +242,7 @@ class GTFSGraph:
         # Check if the graph already exists
         if not force and os.path.exists(self.graph_filepath):
             if self.verbose:
-                print("Loading existing graph from %s" % self.graph_filepath, file=sys.stderr)
+                logging.debug("Loading existing graph from %s" % self.graph_filepath, file=sys.stderr)
             self.graph = pickle.load(open(self.graph_filepath, 'rb'))
             return self.graph
 
@@ -283,7 +284,7 @@ class GTFSGraph:
         # Check if the graph already exists
         if not force and os.path.isfile(graph_filepath):
             if self.verbose:
-                print("Loading existing tracks graph from %s" % graph_filepath, file=sys.stderr)
+                logging.debug("Loading existing tracks graph from %s" % graph_filepath, file=sys.stderr)
             self.tracks_graph = pickle.load(open(graph_filepath, 'rb'))
             self.points_map = pickle.load(open(point_map_filepath, 'rb'))
             return
@@ -303,14 +304,14 @@ class GTFSGraph:
 
         if self.verbose:
             start_time = time.time()
-            print(f"Building tracks graph for {len(tracks)} tracks")
+            logging.debug(f"Building tracks graph for {len(tracks)} tracks")
             j = 0
         
         for track in tracks:
             if self.verbose:
                 j += 1
                 if (j % 100) == 0:
-                    print(f"{j} tracks done ({time.time() - start_time:.2f}s)")
+                    logging.debug(f"{j} tracks done ({time.time() - start_time:.2f}s)")
 
             coords = track['geo_shape']['geometry']['coordinates']
 
@@ -357,13 +358,13 @@ class GTFSGraph:
             stations = json.load(f)
         if self.verbose:
             start_time = time.time()
-            print(f"Linking {len(stations['features'])} stations to their associated lines")
+            logging.debug(f"Linking {len(stations['features'])} stations to their associated lines")
             i = 0
         for station in stations['features']:
             if self.verbose:
                 i += 1
                 if (i % 100) == 0:
-                    print(f"{i} stations done ({time.time() - start_time:.2f}s)")
+                    logging.debug(f"{i} stations done ({time.time() - start_time:.2f}s)")
             station_line = int(station["properties"]["code_ligne"])
             if station_line in lines_indexes:
                 # Get (lat, lon) of the station
@@ -585,4 +586,4 @@ class GTFSGraph:
         if html_ouput_file:
             fmap.save(html_ouput_file)
             if self.verbose:
-                print(f"Interractive map saved to {html_ouput_file}", file=sys.stderr)
+                logging.info(f"Interractive map saved to {html_ouput_file}", file=sys.stderr)

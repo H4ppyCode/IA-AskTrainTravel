@@ -5,12 +5,11 @@
 [![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white)
 ](https://alpine-cuckoo-e2f.notion.site/T-AIA-901-c6ed78595e584f15847a8320bc7a1f8c)
 
-
-## Project 
+## Project
 
 The "Travel Order Resolver" project aims to develop a program that processes travel orders in natural language,
 identifying departure and destination locations (French trains) in text (or optionally voice) and determining the best train itinerary.
-The main focus is on Natural Language Processing (NLP) to extract relevant information from French text and optimize travel routes. 
+The main focus is on Natural Language Processing (NLP) to extract relevant information from French text and optimize travel routes.
 Additionally, the project requires building a custom training dataset for the NLP model and evaluating its performance.
 
 The key steps include:
@@ -18,9 +17,6 @@ The key steps include:
     1. A voice recognition step to convert audio data into text.
     2. Natural Language Processing (NLP) to understand the orders.
     3. An optimization process to find the best train connections.
-
-
-
 
 ## Stack using
 
@@ -56,6 +52,94 @@ The required files are:
 
 Download the [railway tracks speed (json)](https://data.sncf.com/explore/dataset/vitesse-maximale-nominale-sur-ligne/export/) and the [list of stations (geojson)](https://transport.data.gouv.fr/datasets/liste-des-gares) and save them in the same directory as the GTFS data.
 
-## To Use
+## Usage
 
-`python nlp_processor.py sample_nlp_input.txt'` for processing the input file with spaCy NLP
+The main CLI program can be runned like this:
+
+```sh
+python src/AYA.py -h
+```
+
+From this you can run each module separately or the whole flow (speech to text -> nlp -> pathfinding).
+Some options are available only when the module is runned alone or with the others.
+For example, you can't specify an input/output city to the pathfinding module if it takes it inputs from the nlp module.
+
+### Speech To Text
+
+To use the speech to text alone you can use `AYA.py` or the underlying stt entrypoint:
+
+```sh
+python src/AYA.py stt -h
+# Or
+python src/stt/Whisper.py -h
+```
+
+The speech to text module can either take audio files or do live record:
+
+```sh
+# No audio files supplied, try to fallback on microphone (may fail if no default found)
+python src/AYA.py stt
+# List the available microphones (run the same command then with your mic name)
+python src/AYA.py stt --microphone list
+# Run STT with audio files
+python src/AYA.py stt --audio-files "./audio_files/*.mp3"
+```
+
+### Natural Language Processing
+
+As the STT module, you can use the NLP module with `AYA.py` or the underlying nlp entrypoint:
+
+```sh
+python src/AYA.py nlp -h
+# Or
+python src/nlp/Spacy.py -h
+```
+
+The NLP module on itself can either read from stdin or text files:
+
+```sh
+# No input supplied, will read from stdin
+python src/AYA.py nlp
+# Explicitly use stdin
+python src/AYA.py nlp --use-stdin
+# Use input files (in the same format as examples/sample_nlp_input.txt)
+python src/AYA.py nlp --input-files "examples/nlp_input*.txt"
+```
+
+### Pathfinding
+
+Once again, same usage but with `path`.
+
+```sh
+python src/AYA.py path -h
+# Or
+python src/pathfinding/main.py -h
+```
+
+The pathfinding module on itself expects two positional arguments being the departure and destination city.
+You should supply --gtfs-path as the folder containing the required GTFS files. (default to 'gtfs')
+
+```sh
+# Default configuration
+python src/AYA.py path Nantes Paris
+```
+
+### All together
+
+When using multiple modules, the module parameters are prefixed by the module name:
+
+- `stt --audio-files myfile` -> `--stt.audio-files myfile`
+
+```sh
+# STT->NLP: Run nlp from audio files transcriptions
+python src/AYA.py --stt.audio-files "./audio_files/*.mp3" --nlp.no-pathfinding
+# STT->NLP: Or from live record (you may have to specify --stt.microphone or tune other parameters)
+python src/AYA.py --nlp.no-pathfinding
+# NLP->PATH: Takes stdin sentences and forward them to the pathfinder
+python src/AYA.py --nlp.use-stdin
+# NLP->PATH: Sentences file to pathfinder
+python src/AYA.py --nlp.input-files "examples/nlp_input*.txt"
+
+# STT->NLP->PATH: Same as the first two examples but without no-pathfinding (will use live record)
+python src/AYA.py
+```
