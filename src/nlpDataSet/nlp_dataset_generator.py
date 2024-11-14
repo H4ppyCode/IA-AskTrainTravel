@@ -2,7 +2,7 @@ import json
 import random
 from sklearn.model_selection import train_test_split
 
-# Charger les données de villes
+# Load the list of cities
 with open('../pathfinding/gtfs/liste-des-gares.geojson', 'r') as file:
     gares_data = json.load(file)
 

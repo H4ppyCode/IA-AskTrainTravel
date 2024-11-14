@@ -75,7 +75,6 @@ For nlp_dataset_from_kaggle.py, you need to download the dataset from [Kaggle](h
 ### Test and fine-tune the NLP model
 `pip install spacy-lookups-data`
 
-## To Use
 ## Usage
 
 The main CLI program can be runned like this:
