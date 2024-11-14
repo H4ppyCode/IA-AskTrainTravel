@@ -8,4 +8,5 @@ gtfs
 gtfs-cache
 
 src/nlpDataSet/*.json
-src/spaCy/model_ner_trained/
+src/nlp/model_ner_trained/
+src/nlpDataSet/dataframe.csv
