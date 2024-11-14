@@ -12,11 +12,11 @@ class PathfindingNamespace(argparse.Namespace):
     # Pathfinding arguments
     start: str
     dest: str
-    time: str
+    time: str = None
     # Display arguments
     no_display_console: bool
-    output_html: str
-    follow_railways: bool
+    output_html: str = False
+    follow_railways: bool = False
     # Graph building arguments
     gtfs_path: str
     graph_name: str

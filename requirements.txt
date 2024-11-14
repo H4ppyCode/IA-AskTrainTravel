@@ -18,3 +18,5 @@ setuptools
 geopy
 rtree
 shapely
+torch
+

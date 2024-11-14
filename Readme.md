@@ -35,6 +35,17 @@ _Inside the venv_
 python -m pip install -r requirements.txt
 python -m spacy download fr_core_news_md
 ```
+### OS environnment
+You need to install some instance before running 
+
+On Mac OS
+```sh
+brew install portaudio ffmpeg
+```
+
+Other OS, replace 'brew' by your Package Manager
+
+-----------------
 
 ### SNCF Datasets
 
@@ -132,7 +143,7 @@ When using multiple modules, the module parameters are prefixed by the module na
 
 ```sh
 # STT->NLP: Run nlp from audio files transcriptions
-python src/AYA.py --stt.audio-files "./audio_files/*.mp3" --nlp.no-pathfinding
+python src/AYA.py --stt.audio-files "./assets/nantes-paris.mp3" --nlp.no-pathfinding
 # STT->NLP: Or from live record (you may have to specify --stt.microphone or tune other parameters)
 python src/AYA.py --nlp.no-pathfinding
 # NLP->PATH: Takes stdin sentences and forward them to the pathfinder
