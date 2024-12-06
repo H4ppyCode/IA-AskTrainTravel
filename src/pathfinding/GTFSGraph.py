@@ -48,6 +48,9 @@ class NodeType(Enum):
     # time: arrival time at the stop
     # area: area_id of the stop
     TRIP_STOP = "trip_stop"
+
+    def __eq__(self, other: 'NodeType'):
+        return self.value == other.value
     
     
 
@@ -55,6 +58,9 @@ class EdgeType(Enum):
     TRIP = "trip" # Edge between two trip stops
     TRANSFER = "transfer" # Edge between two stops times (transfer between two trips)
     TIMEPOINT = "timepoint" # Bidirectionnal edge between a trip stop and a time point, always with 0 weight
+
+    def __eq__(self, other: 'EdgeType'):
+        return self.value == other.value
 
 def time_to_seconds(time_str, enforce_24h: bool = False):
     h, m, s = map(int, time_str.split(':'))
@@ -242,7 +248,7 @@ class GTFSGraph:
         # Check if the graph already exists
         if not force and os.path.exists(self.graph_filepath):
             if self.verbose:
-                logging.debug("Loading existing graph from %s" % self.graph_filepath, file=sys.stderr)
+                logging.debug("Loading existing graph from %s" % self.graph_filepath)
             self.graph = pickle.load(open(self.graph_filepath, 'rb'))
             return self.graph
 
@@ -284,7 +290,7 @@ class GTFSGraph:
         # Check if the graph already exists
         if not force and os.path.isfile(graph_filepath):
             if self.verbose:
-                logging.debug("Loading existing tracks graph from %s" % graph_filepath, file=sys.stderr)
+                logging.debug("Loading existing tracks graph from %s" % graph_filepath)
             self.tracks_graph = pickle.load(open(graph_filepath, 'rb'))
             self.points_map = pickle.load(open(point_map_filepath, 'rb'))
             return
@@ -452,29 +458,40 @@ class GTFSGraph:
 
         return None
     
-    def get_area(self, area_name: str):
+    def get_area(self, area_name: str, is_dest: bool = False):
         area_regex_name = re.sub(r'[ -]', r'[ -]', area_name)
         area_regex_name = fr"^{area_regex_name}(?:\s|$)"
         possible_areas = self.stops_df[self.stops_df['stop_name'].str.match(area_regex_name, case=False) & (self.stops_df['location_type'] == 1)]
         if possible_areas.empty:
             raise Exception(f"Area {area_name} not found")
-        # Sort by decreasing number of stop points from the stops.txt df
-        stop_points_df = self.stops_df[self.stops_df['location_type'] == 0]
-        stop_point_counts = stop_points_df.groupby('parent_station').size().reset_index(name='stop_point_count')
-        possible_areas_with_counts = possible_areas.merge(
-            stop_point_counts,
-            left_on='stop_id',   # 'stop_id' in the stop area corresponds to 'parent_station' in the stop points
-            right_on='parent_station',
-            how='left'  # Use 'left' to keep all stop areas, even if they have no associated stop points
-        )
-        sorted_areas = possible_areas_with_counts.sort_values(by='stop_point_count', ascending=False)
-        return sorted_areas.iloc[0]
+        if len(possible_areas) == 1:
+            return possible_areas.iloc[0]
+
+        root_area = 'area_%s' % area_name
+        self.graph.add_node(root_area, name=root_area, type=NodeType.AREA)
+        for _, stop in possible_areas.iterrows():
+            if is_dest:
+                self.graph.add_edge(stop['stop_id'], root_area, weight=0, type=EdgeType.TIMEPOINT)
+            else:
+                self.graph.add_edge(root_area, stop['stop_id'], weight=0, type=EdgeType.TIMEPOINT)
+        return self.graph.nodes[root_area]
     
     def get_area_time_point(self, area, time: str):
-        stop_datetimes: List[datetime.time] = [seconds_to_time(time_to_seconds(tp.split('_')[1], True)) for tp in self.graph._pred[area['stop_id']]]
+        # This is a node because multiple areas are matching with the requested name
+        if isinstance(area, dict):
+            stop_datetimes: List[datetime.time] = []
+            for stop_area in self.graph._succ[area['name']].keys():
+                stop_datetimes.extend([seconds_to_time(time_to_seconds(tp.split('_')[1], True)) for tp in self.graph._pred[stop_area] if not tp.startswith('area_')])
+        else:
+            stop_datetimes: List[datetime.time] = [seconds_to_time(time_to_seconds(tp.split('_')[1], True)) for tp in self.graph._pred[area['stop_id']] if not tp.startswith('area_')]
         stop_datetimes.sort()
         tp = find_closest_timepoint(time, stop_datetimes)
-        return f"{area['stop_id']}_{tp.strftime('%H:%M:%S')}"
+        tp_str = tp.strftime('%H:%M:%S')
+        if isinstance(area, dict):
+            for stop_area in self.graph._succ[area['name']].keys():
+                if f"{stop_area}_{tp_str}" in self.graph:
+                    return f"{stop_area}_{tp_str}"
+        return f"{area['stop_id']}_{tp_str}"
 
     def compute_path(self, source: str, destination: str, display: bool = False):
         weight, shortest_path = nx.bidirectional_dijkstra(self.graph, source=source, target=destination)
@@ -483,12 +500,16 @@ class GTFSGraph:
         return weight, shortest_path
 
     def compute_path_from_names(self, source_name: str, destination_name: str, display: bool = False, source_time: str = None):
-        source = self.get_area(source_name)
+        source_area = self.get_area(source_name, is_dest=False)
         if source_time is None:
             source_time = datetime.datetime.now().strftime('%H:%M:%S')
-        source = self.get_area_time_point(source, source_time)
-        destination = self.get_area(destination_name)['stop_id']
-        return self.compute_path(source, destination, display)
+        source_node_name = self.get_area_time_point(source_area, source_time)
+        dest = self.get_area(destination_name, is_dest=True)
+        if isinstance(dest, dict):
+            dest_node_name = dest['name']
+        else:
+            dest_node_name = dest['stop_id']
+        return self.compute_path(source_node_name, dest_node_name, display)
     
     def get_node_display_data(self, node_id: str) -> NodeDisplayData:
         if not self.graph.has_node(node_id):
@@ -586,4 +607,4 @@ class GTFSGraph:
         if html_ouput_file:
             fmap.save(html_ouput_file)
             if self.verbose:
-                logging.info(f"Interractive map saved to {html_ouput_file}", file=sys.stderr)
+                logging.info(f"Interractive map saved to {html_ouput_file}")
