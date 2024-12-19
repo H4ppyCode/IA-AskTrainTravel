@@ -5,6 +5,7 @@ pandas
 spacy
 scikit-learn
 matplotlib
+seaborn
 
 # Pathfinding
 networkx
