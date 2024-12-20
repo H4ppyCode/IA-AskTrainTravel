@@ -1,15 +1,17 @@
 import csv
 import json
+import random
 
 # Path to the CSV file
-input_file = 'dataframe.csv'  # Replace with the name of your CSV file
-output_file = 'test.json'  # Name of the output file
+input_file_kaggle = 'dataframe.csv'
+input_file_bad_sentence = 'phrases_dataset.csv'
+output_file = 'validation.json'
 
 # Initialize the list of sentences in NER format
 ner_data = []
 
 # Read the CSV file
-with open(input_file, mode='r', encoding='utf-8') as csvfile:
+with open(input_file_kaggle, mode='r', encoding='utf-8') as csvfile:
     reader = csv.DictReader(csvfile, delimiter=';')
     for row in reader:
         sentence = row['text'].strip()
@@ -40,6 +42,19 @@ with open(input_file, mode='r', encoding='utf-8') as csvfile:
             "sentence": sentence,
             "entities": entities
         })
+
+with open(input_file_bad_sentence, mode='r', encoding='utf-8') as csvfile:
+    reader = csv.DictReader(csvfile, delimiter=',')
+    for row in reader:
+        sentence = row['Phrase'].strip()
+
+        ner_data.append({
+            "sentence": sentence,
+            "entities": []
+        })
+
+# Shuffle the sentences
+random.shuffle(ner_data)
 
 # Write the results in JSON format
 with open(output_file, mode='w', encoding='utf-8') as jsonfile:

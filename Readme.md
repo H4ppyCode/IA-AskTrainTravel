@@ -66,7 +66,8 @@ Download the [railway tracks speed (json)](https://data.sncf.com/explore/dataset
 ### Generate dataset for nlp
 For nlp_dataset_generator.py, you need SNCF Datasets to generate the dataset for the NLP model.
 
-For nlp_dataset_from_kaggle.py, you need to download the dataset from [Kaggle](https://www.kaggle.com/datasets/robinmarquet/french-destination-and-origin-mapping/code) at csv and put it in the nlpDataSet folder. 
+For nlp_dataset_from_kaggle.py, you need to download the dataset from [Kaggle](https://www.kaggle.com/datasets/robinmarquet/french-destination-and-origin-mapping/code) at csv and put it in the nlpDataSet folder.
+You also need to generate a csv with sentences that do not mention travel. (phrases_dataset.csv)
 
 `python nlp_dataset_generator.py`
 
