@@ -1,5 +1,5 @@
 # Imports
-from typing import Tuple, Iterable, List
+from typing import Tuple, Iterable, Union, List
 import types
 import os
 import spacy
@@ -16,13 +16,15 @@ from spacy.util import minibatch, compounding
 from spacy.training.example import Example
 from sklearn.metrics import confusion_matrix, classification_report
 
+NlpSentence = Union[str, spacy.language.Doc]
 
 
 class SpacyModel:
-    def __init__(self):
+    def __init__(self, model_name: str = None):
         self.model_name: str = None
         self.model: spacy.language.Language = None
         self.initialized: bool = False
+        self.resume_training: bool = False
         self.dataset_path: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'nlpDataSet')
         self.test_data_filename: str = 'test.json'
         self._test_data = None
@@ -31,6 +33,9 @@ class SpacyModel:
         self.validation_data_filename: str = 'validation.json'
         self._validation_data = None
         self.pipe_name: str = None
+
+        if model_name:
+            self.load_model(model_name)
 
     def refresh_methods(self):
         # Rebind all methods from the class to the instance
@@ -85,10 +90,18 @@ class SpacyModel:
         if not self.pipe_name:
             return []
         return [pipe for pipe in self.model.pipe_names if pipe != self.pipe_name]
+
+    def __call__(self, *args, **kwds):
+        return self.model(*args, **kwds)
     
     def predict_sentence(self, sentence: str):
         doc: spacy.tokens.Doc = self.model(sentence)
         return self.on_prediction(sentence, doc)
+
+    def normalize_sentence(self, sentence: NlpSentence) -> spacy.language.Doc:
+        if isinstance(sentence, str):
+            return self.model(sentence)
+        return sentence
 
     def predict_dataset(self, dataset, with_expected: bool = False):
         predictions = []
@@ -114,6 +127,8 @@ class SpacyModel:
         if pipe_name not in self.model.pipe_names:
             return self.model.add_pipe(pipe_name, last=True)
         else:
+            if set_as_pipe_name:
+                self.resume_training = True
             return self.model.get_pipe(pipe_name)
 
     def load_model(self, model_name: str):
@@ -122,7 +137,10 @@ class SpacyModel:
     def ensure_initialized(self):
         if not self.initialized:
             with self.model.disable_pipes(*self.disabled_pipes_names()):
-                self.model.resume_training()
+                if self.resume_training:
+                    self.model.resume_training()
+                else:
+                    self.model.begin_training()
             self.initialized = True
 
     def train(self, iterations: int = 20, drop: float = 0.2):
@@ -152,14 +170,14 @@ class SpacyTextCategorizerModel(SpacyModel):
 
     See https://spacy.io/api/textcategorizer for more information on the TextCategorizer component.    
     """
-    def __init__(self, category_names: Tuple[str, str]):
-        super().__init__()
+    def __init__(self, category_names: Tuple[str, str], model_name: str = None):
         # Only one category name is provided, so we create the second one by adding "NOT_" to the provided category name
         if isinstance(category_names, str):
             category_names = (category_names, "NOT_" + category_names)
         elif len(category_names) == 1:
             category_names = (category_names[0], "NOT_" + category_names[0])
         self.category_names = category_names
+        super().__init__(model_name=model_name)
 
     @property
     def true_category(self):
@@ -168,6 +186,10 @@ class SpacyTextCategorizerModel(SpacyModel):
     @property
     def false_category(self):
         return self.category_names[1]
+
+    def is_true_sentence(self, sentence: NlpSentence) -> bool:
+        doc = self.normalize_sentence(sentence)
+        return doc.cats[self.true_category] > doc.cats[self.false_category]
 
     def on_prediction(self, sentence: str, doc: "spacy.tokens.Doc"):
         label = max(doc.cats, key=doc.cats.get)
@@ -218,9 +240,9 @@ class SpacyTextCategorizerModel(SpacyModel):
         print("Classification Report:\n", class_report)
 
 class SpacyNerModel(SpacyModel):
-    def __init__(self, label_names: Iterable[str]):
-        super().__init__()
+    def __init__(self, label_names: Iterable[str], model_name: str = None):
         self.label_names = label_names
+        super().__init__(model_name=model_name)
 
     def load_model(self, model_name: str):
         super().load_model(model_name)
@@ -234,6 +256,9 @@ class SpacyNerModel(SpacyModel):
     
     def get_expected(self, dataset_item):
         return Example.from_dict(self.model.make_doc(self.get_sentence(dataset_item)), dataset_item[1])
+
+    def get_entity(self, doc: "spacy.tokens.Doc", label: str) -> str:
+        return next((ent.text for ent in doc.ents if ent.label_ == label), None)
 
     def plot_score(self, scores):
         metrics = scores['ents_per_type']

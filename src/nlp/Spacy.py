@@ -6,16 +6,20 @@ import sys
 import spacy
 from enum import Enum
 from dataclasses import dataclass
+from IsTripModel import SpacyIsTripModel
+from GetTripModel import SpacyGetTripModel
 
 class SpacyNamespace(argparse.Namespace):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.model: str
+        self.is_trip_model: str
         self.input_files: str = None
         self.use_stt: bool = False
         self.use_stdin: bool = False
         self.no_pathfinding: bool = False
-        self.loaded_model: spacy.language.Language = None
+        self.loaded_is_trip_model: SpacyIsTripModel = None
+        self.loaded_model: SpacyGetTripModel = None
 
     def validate(self, is_runned_as_subcommand: bool) -> bool:
         if not self.input_files and not self.use_stt and not self.use_stdin:
@@ -30,15 +34,22 @@ class SpacyNamespace(argparse.Namespace):
             logging.error("Multiple nlp inputs provided, please choose only one.")
             return False
         try:
-            self.loaded_model = spacy.load(self.model)
+            self.loaded_is_trip_model = SpacyIsTripModel(self.is_trip_model)
+        except Exception as e:
+            logging.error(f"Error loading is_trip model {self.is_trip_model}: {e}")
+            return False
+        try:
+            self.loaded_model = SpacyGetTripModel(self.model)
         except Exception as e:
             logging.error(f"Error loading model {self.model}: {e}")
             return False
+        
         return True
 
 
 def fill_spacy_parser(parser: argparse.ArgumentParser, args_prefix: str = "") -> None:
     parser.add_argument(f"--{args_prefix}model", default="fr_core_news_md", help="Spacy model name to use. Default: fr_core_news_md", type=str)
+    parser.add_argument(f"--{args_prefix}is-trip-model", default="fr_core_news_md", help="Spacy model name to use. Default: fr_core_news_md", type=str)
     
     nlp_input_group = parser.add_mutually_exclusive_group(required=False)
     nlp_input_group.add_argument(f"--{args_prefix}input-files", default=None, help="Glob pattern for sentence text files.", type=str)
@@ -96,47 +107,43 @@ class Spacy:
         self.config = config
 
     @property
-    def model(self) -> spacy.language.Language:
+    def model(self) -> SpacyGetTripModel:
         return self.config.loaded_model
     
-    def normalize_sentence(self, sentence: NlpSentence) -> spacy.language.Doc:
-        """Ensure that the sentence is processed by the NLP model"""
-        if isinstance(sentence, str):
-            return self.model(sentence)
-        return sentence
+    @property
+    def is_trip_model(self) -> SpacyIsTripModel:
+        return self.config.loaded_is_trip_model
     
     def is_french(self, sentence: NlpSentence) -> bool:
-        return self.normalize_sentence(sentence).lang_ == "fr"
+        return self.model.normalize_sentence(sentence).lang_ == "fr"
     
     def is_trip(self, sentence: NlpSentence) -> bool:
-        # Check if there are exactly two locations in the sentence
-        return len(self.get_locations(sentence)) == 2
-    
-    def get_locations(self, sentence: NlpSentence) -> list[str]:
-        return [ent.text for ent in self.normalize_sentence(sentence).ents if ent.label_ == "LOC"]
-    
+        """Sentence must be either str or result of is_trip_model(sentence)"""
+        return self.is_trip_model.is_true_sentence(sentence)
+
     def get_trip_status(self, sentence: NlpSentence) -> TripStatus:
-        sentence = self.normalize_sentence(sentence)
+        # Check if the sentence is a trip request
+        evaluated_sentence = self.is_trip_model.normalize_sentence(sentence)
+        if not self.is_trip(evaluated_sentence):
+            return TripStatus.NOT_TRIP
+    
         # Check if the sentence is in french
-        if not self.is_french(sentence):
+        if not self.is_french(evaluated_sentence):
             return TripStatus.NOT_FRENCH
 
-        # Check if the sentence is a trip request
-        if not self.is_trip(sentence):
-            return TripStatus.NOT_TRIP
         return TripStatus.TRIP
     
     def process_sentence(self, sentence: NlpSentence, id: Optional[int] = None) -> TripResponse:
         response = TripResponse(str(sentence), TripStatus.NOT_TRIP, None, id)
-        sentence = self.normalize_sentence(sentence)
 
+        # Use the is_trip model to check if the sentence is a valid trip request
         response.status = self.get_trip_status(sentence)
         if not response.is_trip:
             return response
         
         # Can safely assume that there are two locations
-        locations = self.get_locations(sentence)
-        response.trip = Trip(locations[0], locations[1])
+        evaluated = self.model.normalize_sentence(sentence)
+        response.trip = Trip(self.model.get_departure_city(evaluated), self.model.get_destination_city(evaluated))
         return response
     
     def process_sentences_file(self, input_file: str) -> List[TripResponse]:
