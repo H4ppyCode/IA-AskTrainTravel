@@ -1,16 +1,14 @@
 # Imports
 from typing import Tuple, Iterable, Union, List
-import types
-import os
 import spacy
 import spacy.displacy
 import spacy.scorer
 import spacy.tokens
 import random
-import json
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
+from Model import Model
 
 from spacy.util import minibatch, compounding
 from spacy.training.example import Example
@@ -19,72 +17,16 @@ from sklearn.metrics import confusion_matrix, classification_report
 NlpSentence = Union[str, spacy.language.Doc]
 
 
-class SpacyModel:
+class SpacyModel(Model):
     def __init__(self, model_name: str = None):
-        self.model_name: str = None
         self.model: spacy.language.Language = None
         self.initialized: bool = False
         self.resume_training: bool = False
-        self.dataset_path: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'nlpDataSet')
-        self.test_data_filename: str = 'test.json'
-        self._test_data = None
-        self.train_data_filename: str = 'train.json'
-        self._train_data = None
-        self.validation_data_filename: str = 'validation.json'
-        self._validation_data = None
         self.pipe_name: str = None
+        super().__init__(model_name=model_name)
 
         if model_name:
             self.load_model(model_name)
-
-    def refresh_methods(self):
-        # Rebind all methods from the class to the instance
-        for attr_name in dir(self.__class__):
-            attr = getattr(self.__class__, attr_name)
-            if callable(attr) and not attr_name.startswith("__"):
-                setattr(self, attr_name, types.MethodType(attr, self))
-
-    @property
-    def test_data_path(self):
-        return os.path.join(self.dataset_path, self.test_data_filename)
-
-    @property
-    def test_data(self):
-        if self._test_data is None:
-            self._test_data = self.load_data(self.test_data_path)
-        return self._test_data
-    
-    @property
-    def train_data_path(self):
-        return os.path.join(self.dataset_path, self.train_data_filename)
-
-    @property
-    def train_data(self):
-        if self._train_data is None:
-            self._train_data = self.load_data(self.train_data_path)
-        return self._train_data
-    
-    @property
-    def validation_data_path(self):
-        return os.path.join(self.dataset_path, self.validation_data_filename)
-
-    @property
-    def validation_data(self):
-        if self._validation_data is None:
-            self._validation_data = self.load_data(self.validation_data_path)
-        return self._validation_data
-
-    def load_data(self, data_path: str):
-        with open(data_path, "r") as file:
-            data = json.load(file)
-        prepared = self.prepare_data(data)
-        return prepared
-
-    def prepare_data(self, data):
-        return data
-
-    def get_sentence(self, data):
-        return data[0]
 
     def disabled_pipes_names(self):
         if not self.pipe_name:
