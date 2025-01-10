@@ -1,13 +1,16 @@
 # Imports
-from typing import Tuple, List
+from typing import Tuple, Iterable, List
 import types
 import os
 import spacy
+import spacy.displacy
+import spacy.scorer
 import spacy.tokens
 import random
 import json
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 
 from spacy.util import minibatch, compounding
 from spacy.training.example import Example
@@ -27,6 +30,7 @@ class SpacyModel:
         self._train_data = None
         self.validation_data_filename: str = 'validation.json'
         self._validation_data = None
+        self.pipe_name: str = None
 
     def refresh_methods(self):
         # Rebind all methods from the class to the instance
@@ -78,7 +82,9 @@ class SpacyModel:
         return data[0]
 
     def disabled_pipes_names(self):
-        return []
+        if not self.pipe_name:
+            return []
+        return [pipe for pipe in self.model.pipe_names if pipe != self.pipe_name]
     
     def predict_sentence(self, sentence: str):
         doc: spacy.tokens.Doc = self.model(sentence)
@@ -101,17 +107,25 @@ class SpacyModel:
 
     def get_expected(self, dataset_item):
         raise NotImplementedError("get_expected method not implemented")
-    
+
+    def get_or_load_pipe(self, pipe_name: str, set_as_pipe_name: bool = True):
+        if set_as_pipe_name:
+            self.pipe_name = pipe_name
+        if pipe_name not in self.model.pipe_names:
+            return self.model.add_pipe(pipe_name, last=True)
+        else:
+            return self.model.get_pipe(pipe_name)
+
     def load_model(self, model_name: str):
         self.model = spacy.load(model_name)
 
     def ensure_initialized(self):
         if not self.initialized:
             with self.model.disable_pipes(*self.disabled_pipes_names()):
-                self.model.begin_training()
+                self.model.resume_training()
             self.initialized = True
 
-    def train(self, iterations: int = 20):
+    def train(self, iterations: int = 20, drop: float = 0.2):
         with self.model.disable_pipes(*self.disabled_pipes_names()):
             self.ensure_initialized()
             for itn in range(iterations):
@@ -121,7 +135,7 @@ class SpacyModel:
                 for batch in batches:
                     texts, annotations = zip(*batch)
                     examples = [Example.from_dict(self.model.make_doc(text), ann) for text, ann in zip(texts, annotations)]
-                    self.model.update(examples, drop=0.2, losses=losses)
+                    self.model.update(examples, drop=drop, losses=losses)
                 print(f"Iteration {itn + 1}, losses : {losses}")
 
     def save(self, name: str):
@@ -167,16 +181,9 @@ class SpacyTextCategorizerModel(SpacyModel):
 
     def load_model(self, model_name: str):
         super().load_model(model_name)
-
-        if "textcat" not in self.model.pipe_names:
-            textcat = self.model.add_pipe("textcat", last=True)
-        else:
-            textcat = self.model.get_pipe("textcat")
+        pipe = self.get_or_load_pipe("textcat")
         for category in self.category_names:
-            textcat.add_label(category)
-
-    def disabled_pipes_names(self):
-        return [pipe for pipe in self.model.pipe_names if pipe != "textcat"]
+            pipe.add_label(category)
 
     def plot_confusion_matrix(self, y_true: List[bool], y_predicted: List[bool], model_name: str = None):
         if not model_name:
@@ -198,9 +205,9 @@ class SpacyTextCategorizerModel(SpacyModel):
 
         y_true = []
         y_pred = []
-        for converted, _, expected in predicted_items:
+        for label, _, expected in predicted_items:
             y_true.append(self.label_to_bool(expected))
-            y_pred.append(self.label_to_bool(converted))
+            y_pred.append(self.label_to_bool(label))
 
         
         #  Confusion matrix
@@ -209,3 +216,65 @@ class SpacyTextCategorizerModel(SpacyModel):
         # Classification report
         class_report = classification_report(y_true, y_pred)
         print("Classification Report:\n", class_report)
+
+class SpacyNerModel(SpacyModel):
+    def __init__(self, label_names: Iterable[str]):
+        super().__init__()
+        self.label_names = label_names
+
+    def load_model(self, model_name: str):
+        super().load_model(model_name)
+        pipe = self.get_or_load_pipe("ner")
+
+        for label in self.label_names:
+            pipe.add_label(label)
+
+    def on_prediction(self, sentence: str, doc: "spacy.tokens.Doc"):        
+        return None, doc
+    
+    def get_expected(self, dataset_item):
+        return Example.from_dict(self.model.make_doc(self.get_sentence(dataset_item)), dataset_item[1])
+
+    def plot_score(self, scores):
+        metrics = scores['ents_per_type']
+        labels = list(metrics.keys())  # Entity types
+        precision = [metrics[label]['p'] for label in labels]
+        recall = [metrics[label]['r'] for label in labels]
+        f1 = [metrics[label]['f'] for label in labels]
+
+        # Plot metrics
+        x = np.arange(len(labels))  # Label positions
+        width = 0.25  # Bar width
+
+        fig, ax = plt.subplots()
+        ax.bar(x - width, precision, width, label='Precision')
+        ax.bar(x, recall, width, label='Recall')
+        ax.bar(x + width, f1, width, label='F1-Score')
+
+        # Add labels and legend
+        ax.set_xlabel('Entity Types')
+        ax.set_ylabel('Scores')
+        ax.set_title('Precision, Recall, and F1-Score by Entity Type')
+        ax.set_xticks(x)
+        ax.set_xticklabels(labels)
+        ax.legend()
+
+        plt.show()
+
+    def evaluate_model(self, dataset, name: str = None):
+        self.ensure_initialized()
+        if not name:
+            name = self.model_name
+        predicted_items = self.predict_dataset(dataset, with_expected=True)
+        print(f"Model: {name}")
+
+        scorer = spacy.scorer.Scorer(self.model, default_lang="fr")
+        examples = []
+        for _, predicted, example in predicted_items:
+            predicted: "spacy.tokens.Doc"
+            example: Example
+            example.predicted = predicted
+            examples.append(example)
+        scores = scorer.score(examples)
+        self.plot_score(scores)
+        return scores

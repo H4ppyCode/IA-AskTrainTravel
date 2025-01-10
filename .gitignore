@@ -9,4 +9,5 @@ gtfs-cache
 
 src/nlpDataSet/*.json
 src/nlp/model_ner_trained/
+src/nlp/model_is_trip_trained/
 src/nlpDataSet/*.csv
