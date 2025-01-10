@@ -1,5 +1,6 @@
 import json
 import random
+import re
 from sklearn.model_selection import train_test_split
 
 # Load the list of cities
@@ -132,10 +133,12 @@ def generate_random_valid_sentence():
     sentence = template.replace("[ville_depart]", ville_depart).replace("[ville_destination]", ville_destination)
 
     # Find start and end positions of entities
-    start_ville_depart = sentence.find(ville_depart)
-    end_ville_depart = start_ville_depart + len(ville_depart)
-    start_ville_destination = sentence.find(ville_destination)
-    end_ville_destination = start_ville_destination + len(ville_destination)
+    ville_depart_match = re.search(r"\b%s\b" % ville_depart, sentence)
+    start_ville_depart = ville_depart_match.start()
+    end_ville_depart = ville_depart_match.end()
+    ville_destination_match = re.search(r"\b%s\b" % ville_destination, sentence)
+    start_ville_destination = ville_destination_match.start()
+    end_ville_destination = ville_destination_match.end()
     sentence = sentence.lower()
     return {
         "sentence": sentence,
