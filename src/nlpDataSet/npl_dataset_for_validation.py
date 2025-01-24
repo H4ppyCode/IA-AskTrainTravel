@@ -3,28 +3,26 @@ import json
 import random
 
 # Path to the CSV file
-input_file_kaggle = 'dataframe.csv'
-input_file_bad_sentence = 'phrases_dataset.csv'
+input_file_valid_sentence = 'validation_valid_sentence.csv'
+input_file_invalid_sentence = 'validation_invalid_sentence.csv'
 output_file = 'validation.json'
 
 # Initialize the list of sentences in NER format
 ner_data = []
 
-# Read the CSV file
-with open(input_file_kaggle, mode='r', encoding='utf-8') as csvfile:
-    reader = csv.DictReader(csvfile, delimiter=';')
+with open(input_file_valid_sentence, mode='r', encoding='utf-8') as csvfile:
+    reader = csv.DictReader(csvfile)
     for row in reader:
-        sentence = row['text'].strip()
+        sentence = row['sentence'].strip()
         depart = row['from'].strip()
         destination = row['to'].strip()
 
-        # Identify the positions of the entities
         start_depart = sentence.index(depart)
         end_depart = start_depart + len(depart)
         start_destination = sentence.index(destination)
         end_destination = start_destination + len(destination)
 
-        # Build the dictionary for each sentence
+        # Build the entities
         entities = [
             {
                 "start": start_depart,
@@ -43,10 +41,10 @@ with open(input_file_kaggle, mode='r', encoding='utf-8') as csvfile:
             "entities": entities
         })
 
-with open(input_file_bad_sentence, mode='r', encoding='utf-8') as csvfile:
+with open(input_file_invalid_sentence, mode='r', encoding='utf-8') as csvfile:
     reader = csv.DictReader(csvfile, delimiter=',')
     for row in reader:
-        sentence = row['Phrase'].strip()
+        sentence = row['sentence'].strip()
 
         ner_data.append({
             "sentence": sentence,
