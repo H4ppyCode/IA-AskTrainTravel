@@ -1,4 +1,4 @@
-from typing import Union, Optional, List
+from typing import Union, Optional, Callable, List
 import argparse
 import glob
 import logging
@@ -6,8 +6,8 @@ import sys
 import spacy
 from enum import Enum
 from dataclasses import dataclass
-from IsTripModel import SpacyIsTripModel
-from GetTripModel import SpacyGetTripModel
+from nlp.IsTripModel import SpacyIsTripModel
+from nlp.GetTripModel import SpacyGetTripModel
 
 class SpacyNamespace(argparse.Namespace):
     def __init__(self, **kwargs):
@@ -134,15 +134,16 @@ class Spacy:
         return TripStatus.TRIP
     
     def process_sentence(self, sentence: NlpSentence, id: Optional[int] = None) -> TripResponse:
+        sentence_lower = str(sentence).lower()
         response = TripResponse(str(sentence), TripStatus.NOT_TRIP, None, id)
 
         # Use the is_trip model to check if the sentence is a valid trip request
-        response.status = self.get_trip_status(sentence)
+        response.status = self.get_trip_status(sentence_lower)
         if not response.is_trip:
             return response
         
         # Can safely assume that there are two locations
-        evaluated = self.model.normalize_sentence(sentence)
+        evaluated = self.model.normalize_sentence(sentence_lower)
         response.trip = Trip(self.model.get_departure_city(evaluated), self.model.get_destination_city(evaluated))
         return response
     
@@ -168,25 +169,37 @@ class Spacy:
             result.append(trip.to_csv_line(i, with_source=add_source))
         return '\n'.join(result)
     
-    def run(self):
+    def run(self, on_trip: Callable[[TripResponse], None] = None):
         if self.config.use_stt:
             raise Exception("Spacy module can't be used with Speech To Text module (must be managed in AYA.py).")
         if self.config.use_stdin:
-            try:
-                sentence = input("Enter a sentence: ")
-            except (EOFError, KeyboardInterrupt):
-                logging.error("No sentence provided.")
-                return 1
-            trip = self.process_sentence(sentence)
-            if trip.is_trip:
-                print("Trip: departure=%s, arrival=%s" % (trip.trip.departure, trip.trip.arrival))
-            else:
-                print("Not a valid trip: %s" % trip.status)
+            while True:
+                try:
+                    sentence = input("Enter a sentence: ")
+                except (EOFError, KeyboardInterrupt):
+                    logging.error("No sentence provided.")
+                    return 1
+                trip = self.process_sentence(sentence)
+                if trip.is_trip:
+                    print("Trip: departure=%s, arrival=%s" % (trip.trip.departure, trip.trip.arrival))
+                else:
+                    print("Not a valid trip: %s" % trip.status)
+                if on_trip:
+                    try:
+                        on_trip(trip)
+                    except Exception as e:
+                        logging.error("Error processing trip: %s", e)
         else:
             for file in glob.glob(self.config.input_files):
                 logging.info("Processing file: ", file)
                 trips = self.process_sentences_file(file)
                 print(self.trips_to_csv(trips, add_source=True))
+                if on_trip:
+                    for trip in trips:
+                        try:
+                            on_trip(trip)
+                        except Exception as e:
+                            logging.error("Error processing trip: %s", e)
             logging.info("No more files to process.")
         return 0
 

@@ -3,7 +3,7 @@ from typing import Iterable, Union
 import matplotlib.pyplot as plt
 import numpy as np
 import re
-from Model import Model
+from nlp.Model import Model
 
 import transformers
 from transformers import PreTrainedTokenizerFast, PreTrainedModel, TrainingArguments, Trainer

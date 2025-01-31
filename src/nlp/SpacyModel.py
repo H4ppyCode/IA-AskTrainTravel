@@ -8,7 +8,7 @@ import random
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
-from Model import Model
+from nlp.Model import Model
 
 from spacy.util import minibatch, compounding
 from spacy.training.example import Example

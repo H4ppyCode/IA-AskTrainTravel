@@ -36,14 +36,13 @@ def fill_path_parser(parser: argparse.ArgumentParser, args_prefix: str = "") -> 
 
     # Display arguments
     parser.add_argument(f'--{args_prefix}no-display-console', default=False, action='store_true', help='Do not print the path instructions on the console')
-    if not args_prefix:
-        parser.add_argument('--output-html', type=str, default=None, help='Path to a html output file. If this is not set the path will not be saved to a file')
-        parser.add_argument('--follow-railways', default=False, action='store_true', help='Follow the railways instead of drawing straight lines between stations (requires --output-html)')
+    parser.add_argument(f'--{args_prefix}output-html', type=str, default=None, help='Path to a html output file. If this is not set the path will not be saved to a file')
+    parser.add_argument(f'--{args_prefix}follow-railways', default=False, action='store_true', help='Follow the railways instead of drawing straight lines between stations (requires --output-html)')
 
     # Graph building arguments
-    parser.add_argument('-g', f'--{args_prefix}gtfs-path', type=str, default='gtfs', help='Path to the data folder containing the GTFS files')
+    parser.add_argument('-g', f'--{args_prefix}gtfs-path', type=str, default=None, help='Path to the data folder containing the GTFS files')
     parser.add_argument('-n', f'--{args_prefix}graph-name', type=str, default='sncf-light', help='Name of the graph to build')
-    parser.add_argument(f'--{args_prefix}cache-path', type=str, default='gtfs-cache', help='Path to the cache folder')
+    parser.add_argument(f'--{args_prefix}cache-path', type=str, default=None, help='Path to the cache folder')
     parser.add_argument(f'--{args_prefix}force-rebuild-all', default=False, action='store_true', help='Force the rebuild of all the graphs')
     parser.add_argument(f'--{args_prefix}force-rebuild-gtfs', default=False, action='store_true', help='Force the rebuild of the gtfs graph')
     parser.add_argument(f'--{args_prefix}force-rebuild-railways', default=False, action='store_true', help='Force the rebuild of the railways graph')
@@ -53,6 +52,10 @@ def fill_path_parser(parser: argparse.ArgumentParser, args_prefix: str = "") -> 
 
 class Pathfinder:
     def __init__(self, args: PathfindingNamespace):
+        if not args.gtfs_path:
+            args.gtfs_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'pathfinding')
+        if not args.cache_path:
+            args.cache_path = os.path.join(os.path.dirname(__file__), '..','..', 'data', 'pathfinding', 'cache')
         self.args = args
         self.data_path = os.path.abspath(args.gtfs_path)
         self._graph : GTFSGraph = None

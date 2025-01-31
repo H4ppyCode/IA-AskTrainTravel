@@ -61,10 +61,15 @@ The required files are:
 
 2. Json for railway tracks path (display only)
 
-Download the [railway tracks speed (json)](https://data.sncf.com/explore/dataset/vitesse-maximale-nominale-sur-ligne/export/) and the [list of stations (geojson)](https://transport.data.gouv.fr/datasets/liste-des-gares) and save them in the same directory as the GTFS data.
+Download the [railway tracks speed (json)](https://data.sncf.com/explore/dataset/vitesse-maximale-nominale-sur-ligne/export/) and the [list of stations (geojson)](https://transport.data.gouv.fr/datasets/liste-des-gares) and save them in the same directory as the GTFS data. 
+The expected directory is data/pathfinding.
+
+3. Use our dataset
+
+You can unzip our dataset (a merge from ter and tgv datasets) in data/pathfinding/data.zip.
 
 ### Generate dataset for nlp
-For nlp_dataset_generator.py, you need SNCF Datasets to generate the dataset for the NLP model.
+For nlp_dataset_generator.py, you also need SNCF Datasets to generate the dataset for the NLP model.
 
 `python nlp_dataset_generator.py`
 
@@ -84,6 +89,12 @@ python src/AYA.py -h
 From this you can run each module separately or the whole flow (speech to text -> nlp -> pathfinding).
 Some options are available only when the module is runned alone or with the others.
 For example, you can't specify an input/output city to the pathfinding module if it takes it inputs from the nlp module.
+
+
+With the following parameters, you can enter text sentences to test the program. You may have to changed the path to the models.
+```sh
+python src/AYA.py --nlp.use-stdin --nlp.is-trip-model src/nlp/model_is_trip_trained --nlp.model src/nlp/model_ner_trained --path.output-html data/pathfinding/path.html --path.follow-railways
+```
 
 ### Speech To Text
 

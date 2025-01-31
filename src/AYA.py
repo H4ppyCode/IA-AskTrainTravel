@@ -127,6 +127,8 @@ class AYA:
         """We received a trip response from the NLP engine"""
         logging.debug('NLP Transcription: %s' % response.to_csv_line(with_source=True))
         if response.is_trip and self.has_path() and not self.args.nlp.no_pathfinding:
+            if not response.trip.departure or not response.trip.arrival:
+                return
             self.path.compute_path(response.trip.departure, response.trip.arrival)
         return True
     
@@ -134,7 +136,7 @@ class AYA:
         return self.whisper.run(self.on_transcript)
 
     def run_nlp(self):
-        return self.spacy.run()
+        return self.spacy.run(self.on_trip_response)
     
     def run_path(self):
         return self.path.run()

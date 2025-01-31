@@ -1,15 +1,21 @@
 import json
 import random
 import re
+import os
 from sklearn.model_selection import train_test_split
 
+data_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data'))
+dataset_folder = os.path.join(data_folder, 'dataset')
+
 # Load the list of cities
-with open('../pathfinding/gtfs/liste-des-gares.geojson', 'r') as file:
+with open(os.path.join(data_folder, 'pathfinding', 'liste-des-gares.geojson'), 'r') as file:
     gares_data = json.load(file)
 
 # Path to the CSV file
-template_valid_sentence = 'template_valid_sentence.csv'
-template_invalid_sentence = 'template_invalid_sentence.csv'
+template_valid_sentence = os.path.join(dataset_folder, 'template_valid_sentence.csv')
+template_invalid_sentence = os.path.join(dataset_folder, 'template_invalid_sentence.csv')
+test_file = os.path.join(dataset_folder, 'test.json')
+train_file = os.path.join(dataset_folder, 'train.json')
 
 # Extract cities
 communes = [feature['properties']['commune'] for feature in gares_data['features']]
@@ -102,12 +108,12 @@ random.shuffle(sentences)
 train_sentences, test_sentences = train_test_split(sentences, test_size=0.2, random_state=42)
 
 # Save training sentences to a JSON file
-with open('train.json', 'w') as file:
+with open(train_file, 'w') as file:
     json.dump(train_sentences, file, ensure_ascii=False, indent=4)
 
 # Save testing sentences to a JSON file
-with open('test.json', 'w') as file:
+with open(test_file, 'w') as file:
     json.dump(test_sentences, file, ensure_ascii=False, indent=4)
 
-print("Training sentences saved to train.json")
-print("Testing sentences saved to test.json")
+print("Training sentences saved to %s" % train_file)
+print("Testing sentences saved to %s" % test_file)

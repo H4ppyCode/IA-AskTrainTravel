@@ -60,8 +60,8 @@ class WhisperNamespace(argparse.Namespace):
 
 
 def fill_whisper_parser(parser: argparse.ArgumentParser, args_prefix: str = "") -> None:
-    parser.add_argument(f"--{args_prefix}model", default="small", help="Whisper model to use. Default: small",
-                        choices=["tiny", "base", "small", "medium", "large", "turbo"], type=WhisperModel)
+    parser.add_argument(f"--{args_prefix}model", default=WhisperModel.SMALL, help="Whisper model to use. Default: small",
+                        choices=[WhisperModel.TINY, WhisperModel.BASE, WhisperModel.SMALL, WhisperModel.MEDIUM, WhisperModel.LARGE, WhisperModel.TURBO], type=WhisperModel)
     
     # STT Local audio files parameters
     parser.add_argument(f"--{args_prefix}audio-files", default=None, help="Glob pattern for audio files", type=str)

@@ -1,6 +1,6 @@
-import SpacyModel
+import nlp.SpacyModel
 
-class SpacyGetTripModel(SpacyModel.SpacyNerModel):
+class SpacyGetTripModel(nlp.SpacyModel.SpacyNerModel):
     def __init__(self, model_name: str = None):
         super().__init__(["VILLE_DEPART", "VILLE_DESTINATION"], model_name=model_name)
 
