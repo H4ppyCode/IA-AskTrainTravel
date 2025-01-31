@@ -5,6 +5,10 @@
 [![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white)
 ](https://alpine-cuckoo-e2f.notion.site/T-AIA-901-c6ed78595e584f15847a8320bc7a1f8c)
 
+For the final report, please refer to the [Report](doc/ReportAya.pdf)
+
+
+
 ## Project
 
 The "Travel Order Resolver" project aims to develop a program that processes travel orders in natural language,
