@@ -36,7 +36,10 @@ class BertNERModel(BertModel):
             sentence = entry["sentence"]
             entities = entry["entities"]
 
-            if not len(entities):
+            if len(entities) != 2:
+                continue
+            # Test for overlap
+            if max(entities[0]['start'], entities[1]['start']) < min(entities[0]['end'], entities[1]['end']):
                 continue
 
             tags = []

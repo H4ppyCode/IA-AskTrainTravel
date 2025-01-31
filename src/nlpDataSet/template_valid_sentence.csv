@@ -1,7 +1,7 @@
 Depuis [ville_depart] à [ville_destination]
 Itiniréraire jusqu'a [ville_destination] depuis [ville_depart]
 Comment aller de [ville_depart] à [ville_destination] mardi
-Je suis actuellement à [ville_depart] et j’aimerais partir à [ville_destination]
+Je suis actuellement à [ville_depart] et j'aimerais partir à [ville_destination]
 Donne moi l'itinéraire pour aller à [ville_destination] en partant de [ville_depart]
 Comment aller de [ville_depart] à [ville_destination]
 Je pars de [ville_depart] pour aller à [ville_destination]
@@ -26,7 +26,7 @@ Je veux aller à [ville_destination] depuis [ville_depart]
 Emmène moi de [ville_depart] à [ville_destination]
 Je veux aller de [ville_depart] à [ville_destination]
 Allons à [ville_destination] depuis [ville_depart]
-Je suis actuellement à [ville_depart] et j’aimerais partir à [ville_destination] samedi après-midi
+Je suis actuellement à [ville_depart] et j'aimerais partir à [ville_destination] samedi après-midi
 Indique moi le chemin pour [ville_destination] depuis [ville_depart]
 Je cherche le train le plus rapide pour faire [ville_depart] [ville_destination]
 [ville_destination] depuis [ville_depart]
@@ -60,7 +60,7 @@ Guide moi de [ville_depart] vers [ville_destination]
 Je veux trouver un trajet de [ville_depart] à [ville_destination]
 Quel est l'itinéraire entre [ville_depart] et [ville_destination]
 Je souhaiterai avoir des informations sur le train [ville_depart] [ville_destination] qui part dimanche matin
-Je suis actuellement à [ville_depart] et j’aimerais partir à [ville_destination] jeudi matin
+Je suis actuellement à [ville_depart] et j'aimerais partir à [ville_destination] jeudi matin
 Je souhaiterai avoir des informations sur le train [ville_depart] [ville_destination] qui part bientôt
 je viens de [ville_depart] et je veux aller à [ville_destination]
 dans une heure [ville_depart] [ville_destination]
@@ -106,7 +106,7 @@ Je cherche un trajet de [ville_depart] à [ville_destination] dans cinq heures
 [ville_destination] vendredi soir depuis [ville_depart]
 [ville_depart] [ville_destination] mardi
 vendredi soir [ville_depart] [ville_destination]
-"En visite à [ville_depart], retour prévu à [ville_destination] demain"
+En visite à [ville_depart], retour prévu à [ville_destination] demain
 samedi après-midi [ville_depart] [ville_destination]
 Je cherche le train le plus rapide pour faire [ville_depart] [ville_destination] samedi soir
 Je voudrais aller de [ville_depart] à [ville_destination] dans deux heures
@@ -125,7 +125,7 @@ Je cherche un train [ville_depart] [ville_destination] mardi matin
 Je veux aller de [ville_depart] à [ville_destination] dimanche après-midi
 [ville_depart] [ville_destination] aujourd'hui
 Je prends le train [ville_depart] [ville_destination] vendredi après-midi
-Je suis actuellement à [ville_depart] et j’aimerais partir à [ville_destination] dans quatre heures
+Je suis actuellement à [ville_depart] et j'aimerais partir à [ville_destination] dans quatre heures
 Je souhaiterai avoir des informations sur le train [ville_depart] [ville_destination] qui part mardi matin
 Je pars de [ville_depart] pour aller à [ville_destination] lundi après-midi
 Je pars de [ville_depart] pour aller à [ville_destination] jeudi soir
@@ -164,21 +164,21 @@ Je souhaiterai avoir des informations sur le train [ville_depart] [ville_destina
 [ville_destination] vendredi depuis [ville_depart]
 Je pars de [ville_depart] pour aller à [ville_destination] dimanche après-midi
 [ville_depart] [ville_destination] bientôt
-"Je viens de La [ville_depart], actuellement en visite à [ville_destination], je retourne chez moi ensuite."
-"Je vis à [ville_depart], mais je passe quelques jours à [ville_destination], retour à domicile bientôt."
-"Je suis de [ville_depart], en déplacement à [ville_destination] pour une réunion, je rentre après."
-"Je suis originaire de [ville_depart], actuellement en vacances à [ville_destination], retour chez moi ensuite."
-"Je suis de [ville_depart], en visite à [ville_destination], retour chez moi après-demain."
-"Je suis de [ville_depart], mais actuellement à [ville_destination], retour chez moi demain."
-"Je vis à [ville_depart], en déplacement à [ville_destination], retour prévu chez moi ensuite."
-"Je suis de [ville_depart], actuellement à [ville_destination] pour un rendez-vous, retour chez moi demain."
-"Je suis de [ville_depart], actuellement en visite à [ville_destination], retour chez moi prévu demain."
-"Je vis à [ville_depart], en déplacement à [ville_destination], retour prévu chez moi bientôt."
-"Je viens de [ville_depart], actuellement en déplacement à [ville_destination], retour chez moi demain."
-"Je suis de [ville_depart], en visite à [ville_destination] pour quelques jours, retour chez moi prévu."
-"Je suis de [ville_depart], actuellement en visite à [ville_destination]"
-"Je vis à [ville_depart], en déplacement à [ville_destination] pour le travail"
-"Je suis originaire de [ville_depart], actuellement à [ville_destination], retour chez moi ensuite."
+Je viens de La [ville_depart], actuellement en visite à [ville_destination], je retourne chez moi ensuite.
+Je vis à [ville_depart], mais je passe quelques jours à [ville_destination], retour à domicile bientôt.
+Je suis de [ville_depart], en déplacement à [ville_destination] pour une réunion, je rentre après.
+Je suis originaire de [ville_depart], actuellement en vacances à [ville_destination], retour chez moi ensuite.
+Je suis de [ville_depart], en visite à [ville_destination], retour chez moi après-demain.
+Je suis de [ville_depart], mais actuellement à [ville_destination], retour chez moi demain.
+Je vis à [ville_depart], en déplacement à [ville_destination], retour prévu chez moi ensuite.
+Je suis de [ville_depart], actuellement à [ville_destination] pour un rendez-vous, retour chez moi demain.
+Je suis de [ville_depart], actuellement en visite à [ville_destination], retour chez moi prévu demain.
+Je vis à [ville_depart], en déplacement à [ville_destination], retour prévu chez moi bientôt.
+Je viens de [ville_depart], actuellement en déplacement à [ville_destination], retour chez moi demain.
+Je suis de [ville_depart], en visite à [ville_destination] pour quelques jours, retour chez moi prévu.
+Je suis de [ville_depart], actuellement en visite à [ville_destination]
+Je vis à [ville_depart], en déplacement à [ville_destination] pour le travail
+Je suis originaire de [ville_depart], actuellement à [ville_destination], retour chez moi ensuite.
 Comment aller de [ville_depart] à [ville_destination] dans trois heures
 Je pars samedi de [ville_depart] pour aller à [ville_destination]
 Je pars de [ville_depart] pour aller à [ville_destination] prochainement
@@ -198,7 +198,7 @@ Je cherche un train [ville_depart] [ville_destination] dans une heure
 Je pars dans quatre heures de [ville_depart] pour aller à [ville_destination]
 Comment aller de [ville_depart] à [ville_destination] samedi matin
 train [ville_depart] [ville_destination] prochainement
-Je suis actuellement à [ville_depart] et j’aimerais partir à [ville_destination] jeudi soir
+Je suis actuellement à [ville_depart] et j'aimerais partir à [ville_destination] jeudi soir
 Je cherche un train [ville_depart] [ville_destination] dimanche soir
 Je prends le train [ville_depart] [ville_destination] demain matin
 mercredi je partirais de [ville_depart] pour aller à [ville_destination]
@@ -230,33 +230,33 @@ Je souhaiterai avoir des informations sur le train [ville_depart] [ville_destina
 Je veux aller de [ville_depart] à [ville_destination] dimanche
 Je pars de [ville_depart] pour aller à [ville_destination] dans trois heures
 mardi je partirais de [ville_depart] pour aller à [ville_destination]
-Je suis actuellement à [ville_depart] et j’aimerais partir à [ville_destination] le mois prochain
+Je suis actuellement à [ville_depart] et j'aimerais partir à [ville_destination] le mois prochain
 [ville_depart] [ville_destination] dimanche après-midi
 Je cherche un train [ville_depart] [ville_destination] vendredi après-midi
 Je pars demain matin de [ville_depart] pour aller à [ville_destination].
-Je suis actuellement à [ville_depart] et j’aimerais partir à [ville_destination] lundi matin.
+Je suis actuellement à [ville_depart] et j'aimerais partir à [ville_destination] lundi matin.
 Je cherche un trajet de [ville_depart] à [ville_destination] dimanche
 Je cherche le train le plus rapide pour faire [ville_depart] [ville_destination] demain soir.
 Je cherche un trajet de [ville_depart] à [ville_destination] dans une heure
 Je pars samedi après-midi de [ville_depart] pour aller à [ville_destination]
 lundi après-midi je partirais de [ville_depart] pour aller à [ville_destination]
 dimanche [ville_depart] [ville_destination]
-"En déplacement à [ville_depart], retour prévu à [ville_destination]"
-"Actuellement à [ville_depart] pour une réunion, retour prévu à [ville_destination]"
-"En vacances à [ville_depart], retour prévu à [ville_destination]"
-"Je suis en déplacement à [ville_depart], retour à [ville_destination]"
-"En visite à [ville_depart], retour prévu à [ville_destination] demain"
-"Je suis à [ville_depart] pour le travail, retour à [ville_destination]"
-"Actuellement en déplacement à [ville_depart], retour à [ville_destination]"
-"Je passe quelques jours à [ville_depart], retour à [ville_destination]"
-"En vacances à [ville_depart], retour prévu à [ville_destination]"
-"Je suis en déplacement à [ville_depart], retour à [ville_destination]"
-"En visite à [ville_depart], retour prévu à [ville_destination] demain"
-"Je suis à [ville_depart] pour une conférence, retour à [ville_destination] ensuite"
-"Actuellement à [ville_depart], retour prévu à [ville_destination]"
-"Je passe la journée à [ville_depart], retour à [ville_destination]"
-"En déplacement à [ville_depart], retour prévu à [ville_destination]"
-"En vacances à [ville_depart], retour prévu à [ville_destination]"
+En déplacement à [ville_depart], retour prévu à [ville_destination]
+Actuellement à [ville_depart] pour une réunion, retour prévu à [ville_destination]
+En vacances à [ville_depart], retour prévu à [ville_destination]
+Je suis en déplacement à [ville_depart], retour à [ville_destination]
+En visite à [ville_depart], retour prévu à [ville_destination] demain
+Je suis à [ville_depart] pour le travail, retour à [ville_destination]
+Actuellement en déplacement à [ville_depart], retour à [ville_destination]
+Je passe quelques jours à [ville_depart], retour à [ville_destination]
+En vacances à [ville_depart], retour prévu à [ville_destination]
+Je suis en déplacement à [ville_depart], retour à [ville_destination]
+En visite à [ville_depart], retour prévu à [ville_destination] demain
+Je suis à [ville_depart] pour une conférence, retour à [ville_destination] ensuite
+Actuellement à [ville_depart], retour prévu à [ville_destination]
+Je passe la journée à [ville_depart], retour à [ville_destination]
+En déplacement à [ville_depart], retour prévu à [ville_destination]
+En vacances à [ville_depart], retour prévu à [ville_destination]
 Je pars de [ville_depart] pour aller à [ville_destination] lundi
 mercredi matin [ville_depart] [ville_destination]
 [ville_depart] [ville_destination] mercredi soir
@@ -268,7 +268,7 @@ Je voudrais aller de [ville_depart] à [ville_destination] jeudi
 dans une heure je partirais de [ville_depart] pour aller à [ville_destination]
 Je veux aller de [ville_depart] à [ville_destination] jeudi matin
 train [ville_depart] [ville_destination] dans quatre heures
-Je suis actuellement à [ville_depart] et j’aimerais partir à [ville_destination] dimanche
+Je suis actuellement à [ville_depart] et j'aimerais partir à [ville_destination] dimanche
 Je cherche le train le plus rapide pour faire [ville_depart] [ville_destination] samedi
 Je pars de [ville_depart] pour aller à [ville_destination] mardi
 train [ville_depart] [ville_destination] dimanche
@@ -278,11 +278,11 @@ Comment aller de [ville_depart] à [ville_destination] samedi
 train [ville_depart] [ville_destination] dans six heures
 Je cherche un trajet de [ville_depart] à [ville_destination] samedi matin
 dans six heures je partirais de [ville_depart] pour aller à [ville_destination]
-Je suis actuellement à [ville_depart] et j’aimerais partir à [ville_destination] dimanche matin
+Je suis actuellement à [ville_depart] et j'aimerais partir à [ville_destination] dimanche matin
 Comment aller de [ville_depart] à [ville_destination] jeudi
 Je cherche un train [ville_depart] [ville_destination] lundi
 [ville_depart] [ville_destination] demain matin
-Je suis actuellement à [ville_depart] et j’aimerais partir à [ville_destination] samedi
+Je suis actuellement à [ville_depart] et j'aimerais partir à [ville_destination] samedi
 Je pars de [ville_depart] pour aller à [ville_destination] dimanche soir
 Je souhaiterai avoir des informations sur le train [ville_depart] [ville_destination] qui part dimanche après-midi
 Je cherche le train le plus rapide pour faire [ville_depart] [ville_destination] aujourd'hui
@@ -297,10 +297,10 @@ Je cherche un train [ville_depart] [ville_destination] demain
 Je prends le train [ville_depart] [ville_destination] dimanche soir
 Je cherche un train [ville_depart] [ville_destination] lundi soir
 Je cherche un trajet de [ville_depart] à [ville_destination] maintenant
-Je suis actuellement à [ville_depart] et j’aimerais partir à [ville_destination] demain
+Je suis actuellement à [ville_depart] et j'aimerais partir à [ville_destination] demain
 Je cherche un trajet de [ville_depart] à [ville_destination] aujourd'hui
 Je pars de [ville_depart] pour aller à [ville_destination] dans six heures
-Je suis actuellement à [ville_depart] et j’aimerais partir à [ville_destination] vendredi soir
+Je suis actuellement à [ville_depart] et j'aimerais partir à [ville_destination] vendredi soir
 Je souhaiterai avoir des informations sur le train [ville_depart] [ville_destination] qui part jeudi soir
 Je cherche un trajet de [ville_depart] à [ville_destination] mercredi soir
 Comment aller de [ville_depart] à [ville_destination] vendredi soir
@@ -318,7 +318,7 @@ jeudi après-midi je partirais de [ville_depart] pour aller à [ville_destinatio
 Je souhaiterai avoir des informations sur le train [ville_depart] [ville_destination] qui part lundi soir
 [ville_destination] mercredi après-midi depuis [ville_depart]
 Je souhaiterai avoir des informations sur le train [ville_depart] [ville_destination] qui part demain matin
-Je suis actuellement à [ville_depart] et j’aimerais partir à [ville_destination] jeudi après-midi
+Je suis actuellement à [ville_depart] et j'aimerais partir à [ville_destination] jeudi après-midi
 Je pars de [ville_depart] pour aller à [ville_destination] jeudi
 Je cherche un train [ville_depart] [ville_destination] vendredi soir
 [ville_depart] [ville_destination] jeudi
@@ -326,7 +326,7 @@ Je pars vendredi matin de [ville_depart] pour aller à [ville_destination]
 Je pars mercredi après-midi de [ville_depart] pour aller à [ville_destination]
 Je souhaiterai avoir des informations sur le train [ville_depart] [ville_destination] qui part dans un moment
 Je pars de [ville_depart] pour aller à [ville_destination] mardi soir
-Je suis actuellement à [ville_depart] et j’aimerais partir à [ville_destination] samedi soir
+Je suis actuellement à [ville_depart] et j'aimerais partir à [ville_destination] samedi soir
 Je pars de [ville_depart] pour aller à [ville_destination] samedi soir
 [ville_depart] [ville_destination] le mois prochain
 Je cherche le train le plus rapide pour faire [ville_depart] [ville_destination] lundi matin
@@ -335,7 +335,7 @@ Je prends le train [ville_depart] [ville_destination] jeudi matin
 Comment aller de [ville_depart] à [ville_destination] lundi après-midi
 lundi matin [ville_depart] [ville_destination]
 Je cherche un trajet de [ville_depart] à [ville_destination] le mois prochain
-Je suis actuellement à [ville_depart] et j’aimerais partir à [ville_destination] dans deux heures
+Je suis actuellement à [ville_depart] et j'aimerais partir à [ville_destination] dans deux heures
 Je veux aller de [ville_depart] à [ville_destination] mercredi après-midi
 je veux partir de [ville_depart] pour [ville_destination] mercredi après-midi
 [ville_depart] [ville_destination] jeudi après-midi
@@ -352,7 +352,7 @@ Je voudrais aller de [ville_depart] à [ville_destination] samedi soir
 [ville_depart] [ville_destination] mardi après-midi
 Je voudrais aller de [ville_depart] à [ville_destination] dans une demi-heure
 Comment aller de [ville_depart] à [ville_destination] samedi après-midi
-Je suis actuellement à [ville_depart] et j’aimerais partir à [ville_destination] demain soir
+Je suis actuellement à [ville_depart] et j'aimerais partir à [ville_destination] demain soir
 Je voudrais aller de [ville_depart] à [ville_destination] jeudi soir
 Je pars dimanche matin de [ville_depart] pour aller à [ville_destination]
 [ville_destination] jeudi matin depuis [ville_depart]
@@ -374,7 +374,7 @@ Je veux aller de [ville_depart] à [ville_destination] maintenant
 [ville_depart] [ville_destination] prochainement
 Je veux aller de [ville_depart] à [ville_destination] vendredi après-midi
 [ville_destination] demain après-midi depuis [ville_depart]
-Je suis actuellement à [ville_depart] et j’aimerais partir à [ville_destination] bientôt
+Je suis actuellement à [ville_depart] et j'aimerais partir à [ville_destination] bientôt
 demain [ville_depart] [ville_destination]
 [ville_depart] [ville_destination] mercredi
 Je prends le train [ville_depart] [ville_destination] demain
@@ -389,119 +389,119 @@ Pouvez-vous vérifier les trains disponibles entre [ville_depart] et [ville_dest
 J'aimerais partir de [ville_depart] et arriver à [ville_destination] en soirée.
 Planifiez un trajet de [ville_depart] jusqu'à [ville_destination] pour demain matin.
 Quel est le prochain train de [ville_depart] à [ville_destination] ?
-"Je veux aller de [ville_depart] à [ville_destination] demain matin, avant 9h."
+Je veux aller de [ville_depart] à [ville_destination] demain matin, avant 9h.
 Le train de [ville_depart] à [ville_destination] est-il direct ?
-"Je pars de [ville_depart] et j'arrive à [ville_destination], quel train recommandez-vous ?"
+Je pars de [ville_depart] et j'arrive à [ville_destination], quel train recommandez-vous ?
 Combien coûte un billet entre [ville_depart] et [ville_destination] ?
 Réservez-moi un ticket de [ville_depart] à [ville_destination] pour aujourd'hui.
 Pouvez-vous me réserver un billet de [ville_depart] vers [ville_destination] pour cet après-midi ?
-"Organisez un trajet entre [ville_depart] et [ville_destination], s'il vous plaît."
+Organisez un trajet entre [ville_depart] et [ville_destination], s'il vous plaît.
 Quels sont les horaires des trains entre [ville_depart] et [ville_destination] ?
 Y a-t-il une correspondance entre [ville_depart] et [ville_destination] ce soir ?
 Je dois absolument être à [ville_destination] depuis [ville_depart] pour 15h.
 Est-il possible d'aller directement de [ville_depart] à [ville_destination] sans changement ?
 Avez-vous des billets disponibles pour un trajet de [ville_depart] à [ville_destination] ?
 Quels sont les horaires pour un trajet de [ville_depart] à [ville_destination] ?
-"Je veux voyager de [ville_depart] à [ville_destination] avec une escale, c'est possible ?"
+Je veux voyager de [ville_depart] à [ville_destination] avec une escale, c'est possible ?
 Quelles sont les options pour aller de [ville_depart] à [ville_destination] demain soir ?
 Je pars de [ville_depart] pour aller à [ville_destination] ce week-end avec ma famille.
 Je vais de [ville_depart] à [ville_destination] pour un voyage d'affaires lundi prochain.
 Je prends le train de [ville_depart] à [ville_destination] le 14 avril à 14h30.
 Le train part de [ville_depart] pour [ville_destination] après la réunion à 18h.
-"Je prends un train depuis [ville_depart] vers [ville_destination], espérant arriver avant minuit."
-"Je voyage de [ville_depart] à [ville_destination], mais je vais m'arrêter en chemin."
+Je prends un train depuis [ville_depart] vers [ville_destination], espérant arriver avant minuit.
+Je voyage de [ville_depart] à [ville_destination], mais je vais m'arrêter en chemin.
 Voyage en première classe de [ville_depart] à [ville_destination] demain.
 Je pars en voyage de [ville_depart] pour [ville_destination] pendant mes vacances.
-"Le départ est prévu à [ville_depart] à midi, et l'arrivée à [ville_destination] vers 16h."
+Le départ est prévu à [ville_depart] à midi, et l'arrivée à [ville_destination] vers 16h.
 Le trajet commence à [ville_depart] et se termine à [ville_destination] ce vendredi soir.
-"Départ de [ville_depart] à 7h, arrivée à [ville_destination] avant le coucher du soleil."
+Départ de [ville_depart] à 7h, arrivée à [ville_destination] avant le coucher du soleil.
 Je dois partir de [ville_depart] pour aller à [ville_destination] pour un entretien à 10h.
 Nous partons de [ville_depart] en direction de [ville_destination] pour les vacances d'été.
 Je quitte [ville_depart] pour rejoindre [ville_destination] après la pluie.
 Je me dirige de [ville_depart] vers [ville_destination] en passant par une gare intermédiaire.
 Direction [ville_destination] en partant de [ville_depart] tôt le matin.
-"En route de [ville_depart] pour [ville_destination], mais je vais faire une escale."
-"Depuis [ville_depart], je vais vers [ville_destination] pour assister à une conférence."
-"De [ville_depart] vers [ville_destination], je prends le train le plus rapide disponible."
+En route de [ville_depart] pour [ville_destination], mais je vais faire une escale.
+Depuis [ville_depart], je vais vers [ville_destination] pour assister à une conférence.
+De [ville_depart] vers [ville_destination], je prends le train le plus rapide disponible.
 Partir de [ville_depart] pour aller vers [ville_destination] avec mes amis ce soir.
 Mon trajet commence à [ville_depart] et finit à [ville_destination] après plusieurs heures de route.
-"Trajet en train de [ville_depart] à [ville_destination], avec un arrêt à mi-chemin."
+Trajet en train de [ville_depart] à [ville_destination], avec un arrêt à mi-chemin.
 Je fais le trajet de [ville_depart] jusqu'à [ville_destination] pour prendre un monaco.
-"Hey, tu sais comment aller de [ville_depart] à [ville_destination] ?"
-"Je prends un train genre, de [ville_depart] à [ville_destination], c'est quand le prochain ?"
+Hey, tu sais comment aller de [ville_depart] à [ville_destination] ?
+Je prends un train genre, de [ville_depart] à [ville_destination], c'est quand le prochain ?
 Tu peux checker pour un billet de [ville_depart] à [ville_destination] ?
 C'est quoi le trajet le plus rapide pour [ville_destination] depuis [ville_depart] ?
-"Moi je pars de [ville_depart], et je vais direct à [ville_destination]."
-"Un aller simple pour [ville_destination] depuis [ville_depart], dispo ?"
-"Il reste des places pour [ville_depart] à [ville_destination], là, tout de suite ?"
-"J'vais à [ville_destination] depuis [ville_depart], t'as une idée ?"
+Moi je pars de [ville_depart], et je vais direct à [ville_destination].
+Un aller simple pour [ville_destination] depuis [ville_depart], dispo ?
+Il reste des places pour [ville_depart] à [ville_destination], là, tout de suite ?
+J'vais à [ville_destination] depuis [ville_depart], t'as une idée ?
 Y a un train qui part bientôt de [ville_depart] pour [ville_destination] ?
-"Mets-moi un ticket pour [ville_depart] à [ville_destination], c'est possible ?"
-"Entre [ville_depart] et [ville_destination], c'est quoi les horaires dispo ?"
+Mets-moi un ticket pour [ville_depart] à [ville_destination], c'est possible ?
+Entre [ville_depart] et [ville_destination], c'est quoi les horaires dispo ?
 Tu peux voir si y a un train entre [ville_depart] et [ville_destination] ce soir ?
-"Je dois aller de [ville_depart] à [ville_destination] dans la journée, comment je fais ?"
+Je dois aller de [ville_depart] à [ville_destination] dans la journée, comment je fais ?
 Dis-moi si y a une correspondance entre [ville_depart] et [ville_destination].
-"Le train de [ville_depart] pour [ville_destination], c'est à quelle heure ?"
-"P'tite info : [ville_depart] à [ville_destination], un direct c'est possible ?"
+Le train de [ville_depart] pour [ville_destination], c'est à quelle heure ?
+P'tite info : [ville_depart] à [ville_destination], un direct c'est possible ?
 Je veux genre partir de [ville_depart] et atterrir à [ville_destination].
 C'est quoi le premier départ de [ville_depart] à [ville_destination] demain matin ?
 À quelle heure on peut choper un train pour [ville_destination] en partant de [ville_depart] ?
-"Faut que je sois à [ville_destination] ce soir, tu vois un truc depuis [ville_depart] ?"
+Faut que je sois à [ville_destination] ce soir, tu vois un truc depuis [ville_depart] ?
 Je souhaite me rendre de [ville_depart] à [ville_destination] en train.
 Quels sont les horaires de train pour aller de [ville_depart] à [ville_destination] ?
 Je voudrais savoir s'il y a des trains directs entre [ville_depart] et [ville_destination].
 Pouvez-vous me donner les horaires des trains de [ville_depart] à [ville_destination] ?
 Je cherche un billet de train pour voyager de [ville_depart] à [ville_destination].
 Quel est le meilleur moyen de se rendre de [ville_depart] à [ville_destination] en train ?
-"Je dois aller de [ville_depart] à [ville_destination] en train, quelles sont les options ?"
+Je dois aller de [ville_depart] à [ville_destination] en train, quelles sont les options ?
 Y a-t-il des trains disponibles pour aller de [ville_depart] à [ville_destination] ?
 Je voudrais réserver un billet de train de [ville_depart] à [ville_destination].
 Quels sont les horaires des trains de [ville_depart] à [ville_destination] pour demain ?
 Je cherche un train pour aller de [ville_depart] à [ville_destination] ce week-end.
 Pouvez-vous me dire comment aller de [ville_depart] à [ville_destination] en train ?
-"Je dois me rendre de [ville_depart] à [ville_destination] en train, quels sont les horaires ?"
+Je dois me rendre de [ville_depart] à [ville_destination] en train, quels sont les horaires ?
 Y a-t-il des trains directs de [ville_depart] à [ville_destination] ?
 Je voudrais connaître les horaires des trains de [ville_depart] à [ville_destination].
 Quel est le meilleur itinéraire en train de [ville_depart] à [ville_destination] ?
-"Je cherche à voyager de [ville_depart] à [ville_destination] en train, quelles sont les options ?"
+Je cherche à voyager de [ville_depart] à [ville_destination] en train, quelles sont les options ?
 Pouvez-vous me fournir les horaires des trains de [ville_depart] à [ville_destination] ?
-"Je dois aller de [ville_depart] à [ville_destination] en train, quels sont les horaires disponibles ?"
+Je dois aller de [ville_depart] à [ville_destination] en train, quels sont les horaires disponibles ?
 Y a-t-il des trains disponibles pour aller de [ville_depart] à [ville_destination] demain ?
 Je voudrais réserver un billet de train pour aller de [ville_depart] à [ville_destination].
 Quels sont les horaires des trains de [ville_depart] à [ville_destination] pour ce week-end ?
 Je cherche un train pour aller de [ville_depart] à [ville_destination] aujourd'hui.
 Pouvez-vous me dire comment me rendre de [ville_depart] à [ville_destination] en train ?
-"Je dois me rendre de [ville_depart] à [ville_destination] en train, quels sont les horaires disponibles ?"
+Je dois me rendre de [ville_depart] à [ville_destination] en train, quels sont les horaires disponibles ?
 Y a-t-il des trains directs de [ville_depart] à [ville_destination] demain ?
 Je voudrais connaître les horaires des trains de [ville_depart] à [ville_destination] pour aujourd'hui.
 Quel est le meilleur itinéraire en train de [ville_depart] à [ville_destination] pour demain ?
-"Je cherche à voyager de [ville_depart] à [ville_destination] en train, quelles sont les options disponibles ?"
+Je cherche à voyager de [ville_depart] à [ville_destination] en train, quelles sont les options disponibles ?
 Pouvez-vous me fournir les horaires des trains de [ville_depart] à [ville_destination] pour ce week-end ?
-"Je dois aller de [ville_depart] à [ville_destination] en train, quels sont les horaires disponibles aujourd'hui ?"
+Je dois aller de [ville_depart] à [ville_destination] en train, quels sont les horaires disponibles aujourd'hui ?
 Y a-t-il des trains disponibles pour aller de [ville_depart] à [ville_destination] ce week-end ?
 Je voudrais réserver un billet de train pour aller de [ville_depart] à [ville_destination] demain.
 Quels sont les horaires des trains de [ville_depart] à [ville_destination] pour aujourd'hui ?
 Je cherche un train pour aller de [ville_depart] à [ville_destination] demain.
 Pouvez-vous me dire comment me rendre de [ville_depart] à [ville_destination] en train aujourd'hui ?
-"Je dois me rendre de [ville_depart] à [ville_destination] en train, quels sont les horaires disponibles demain ?"
+Je dois me rendre de [ville_depart] à [ville_destination] en train, quels sont les horaires disponibles demain ?
 Y a-t-il des trains directs de [ville_depart] à [ville_destination] aujourd'hui ?
 Je voudrais connaître les horaires des trains de [ville_depart] à [ville_destination] pour demain.
 Quel est le meilleur itinéraire en train de [ville_depart] à [ville_destination] pour ce week-end ?
-"Je cherche à voyager de [ville_depart] à [ville_destination] en train, quelles sont les options disponibles aujourd'hui ?"
+Je cherche à voyager de [ville_depart] à [ville_destination] en train, quelles sont les options disponibles aujourd'hui ?
 Pouvez-vous me fournir les horaires des trains de [ville_depart] à [ville_destination] pour demain ?
-"Je dois aller de [ville_depart] à [ville_destination] en train, quels sont les horaires disponibles ce week-end ?"
+Je dois aller de [ville_depart] à [ville_destination] en train, quels sont les horaires disponibles ce week-end ?
 Y a-t-il des trains disponibles pour aller de [ville_depart] à [ville_destination] aujourd'hui ?
 Je voudrais réserver un billet de train pour aller de [ville_depart] à [ville_destination] ce week-end.
 Pouvez-vous me dire comment me rendre de [ville_depart] à [ville_destination] en train demain ?
-"Je dois me rendre de [ville_depart] à [ville_destination] en train, quels sont les horaires disponibles ce week-end ?"
+Je dois me rendre de [ville_depart] à [ville_destination] en train, quels sont les horaires disponibles ce week-end ?
 Y a-t-il des trains directs de [ville_depart] à [ville_destination] ce week-end ?
 Je voudrais connaître les horaires des trains de [ville_depart] à [ville_destination] pour ce week-end.
 Quel est le meilleur itinéraire en train de [ville_depart] à [ville_destination] pour aujourd'hui ?
-"Je cherche à voyager de [ville_depart] à [ville_destination] en train, quelles sont les options disponibles demain ?"
+Je cherche à voyager de [ville_depart] à [ville_destination] en train, quelles sont les options disponibles demain ?
 Je voudrais réserver un billet de train pour aller de [ville_depart] à [ville_destination] aujourd'hui.
 Pouvez-vous me dire comment me rendre de [ville_depart] à [ville_destination] en train ce week-end ?
-"Je dois me rendre de [ville_depart] à [ville_destination] en train, quels sont les horaires disponibles aujourd'hui ?"
-"Je cherche à voyager de [ville_depart] à [ville_destination] en train, quelles sont les options disponibles ce week-end ?"
+Je dois me rendre de [ville_depart] à [ville_destination] en train, quels sont les horaires disponibles aujourd'hui ?
+Je cherche à voyager de [ville_depart] à [ville_destination] en train, quelles sont les options disponibles ce week-end ?
 Pouvez-vous me fournir les horaires des trains de [ville_depart] à [ville_destination] pour aujourd'hui ?
-"Je dois aller de [ville_depart] à [ville_destination] en train, quels sont les horaires disponibles demain ?"
-"Quel est le moyen le plus rapide pour aller de [ville_depart] à [ville_destination] ?"
+Je dois aller de [ville_depart] à [ville_destination] en train, quels sont les horaires disponibles demain ?
+Quel est le moyen le plus rapide pour aller de [ville_depart] à [ville_destination] ?
